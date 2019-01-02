@@ -51,6 +51,18 @@
 	});
 	function playRandom() {
 		alert("play random");	
+		DZ.api('/user/me/playlists', function(response){
+			console.log(LOGNS, 'playlists', response.data);
+			$scope.playlists = response.data;
+			$scope.view = renderAction;
+			$rootScope.title = 'Playlists';
+			$scope.$apply();
+
+			$('img').on('load', function(){
+				console.log(LOGNS, this);
+				$(this).css('opacity', 1);
+			});
+		});		
 	}
 	function event_listener_append() {
 		var pre = document.getElementById('event_listener');
