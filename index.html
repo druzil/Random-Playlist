@@ -36,7 +36,8 @@
 	<br/>
 	<input type="button" onclick="DZ.player.setVolume(20); return false;" value="set Volume 20"/>
 	<input type="button" onclick="DZ.player.setVolume(80); return false;" value="set Volume 80"/>
-	
+	<br/>
+	<input type="button" onclick="playRandom(); return false;" value="Play Random"/>
 	<br/><br/><br/>
 </div>
 <div id="slider_seek" class="progressbarplay" style="">
@@ -50,6 +51,9 @@
 			DZ.player.seek((evt.offsetX/$(this).width()) * 100);
 		});
 	});
+	function playRandom() {
+		alert("play random");	
+	}
 	function event_listener_append() {
 		var pre = document.getElementById('event_listener');
 		var line = [];
