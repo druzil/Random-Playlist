@@ -57,8 +57,8 @@
 		DZ.api('/user/1996005/playlists', function(response){
 			console.log(LOGNS, 'playlists', response.data);
 			items = response.data;			
-		});		
-		DZ.api('/user/1996005/albums', function(response){
+			
+			DZ.api('/user/1996005/albums', function(response){
 			console.log(LOGNS, 'albums', response.data);
 			var albums = response.data;
 			var allItems = items.concat(albums);
@@ -71,7 +71,8 @@
 			{
 				DZ.player.playAlbum(item.id);
 			}
-		});		
+		});	
+		});			
 	}
 	function event_listener_append() {
 		var pre = document.getElementById('event_listener');
