@@ -55,15 +55,10 @@
 		alert("play random");	
 		DZ.api('/user/1996005/playlists', function(response){
 			console.log(LOGNS, 'playlists', response.data);
-			$scope.playlists = response.data;
-			$scope.view = renderAction;
-			$rootScope.title = 'Playlists';
-			$scope.$apply();
+			var items = response.data;			
+			var item = items[Math.floor(Math.random()*items.length)];
+			DZ.player.playPlaylist(item.id);
 
-			$('img').on('load', function(){
-				console.log(LOGNS, this);
-				$(this).css('opacity', 1);
-			});
 		});		
 	}
 	function event_listener_append() {
