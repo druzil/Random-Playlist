@@ -53,7 +53,7 @@
 	});
 	function playRandom() {
 		alert("play random");	
-		DZ.api('/user/me/playlists', function(response){
+		DZ.api('/user/1996005/playlists', function(response){
 			console.log(LOGNS, 'playlists', response.data);
 			$scope.playlists = response.data;
 			$scope.view = renderAction;
