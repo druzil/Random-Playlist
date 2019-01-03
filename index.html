@@ -20,13 +20,14 @@
 <div id="player" style="width:100%;" align="center"></div>
 <br/>
 <div id="controlers">
- 
+ <!--
 	<input type="button" onclick="DZ.player.playAlbum(302127); return false;" value="Play Daft Punk - Discovery"/>
 	<input type="button" onclick="DZ.player.playAlbum(301775); return false;" value="Play Daft Punk - Homework"/>
 	<br/>
 	<input type="button" onclick="DZ.player.playRadio(203); return false;" value="Play Radio"/>
 	<input type="button" onclick="DZ.player.playSmartRadio(13); return false;" value="Play Smart Radio"/>
 	<input type="button" onclick="DZ.player.playRadio(1996005, 'user'); return false;" value="Play User Radio"/>	
+-->
 	<input type="button" onclick="playRandom(); return false;" value="Play Random"/>
 	<br/>
 	<input type="button" onclick="DZ.player.play(); return false;" value="play"/>
@@ -52,13 +53,24 @@
 		});
 	});
 	function playRandom() {
-		alert("play random");	
+		var items;
 		DZ.api('/user/1996005/playlists', function(response){
 			console.log(LOGNS, 'playlists', response.data);
-			var items = response.data;			
-			var item = items[Math.floor(Math.random()*items.length)];
-			DZ.player.playPlaylist(item.id);
-
+			items = response.data;			
+		});		
+		DZ.api('/user/1996005/albums', function(response){
+			console.log(LOGNS, 'albums', response.data);
+			var albums = response.data;
+			var allItems = items.concat(albums);
+			var item = allItems[Math.floor(Math.random()*allItems.length)];
+			if (item.type == "playlist")
+			{
+				DZ.player.playPlaylist(item.id);
+			}
+			else
+			{
+				DZ.player.playAlbum(item.id);
+			}
 		});		
 	}
 	function event_listener_append() {
